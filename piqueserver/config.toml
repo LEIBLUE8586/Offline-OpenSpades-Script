@@ -1,0 +1,120 @@
+# INFO
+name = "LAN Game"
+
+motd = [
+ "Welcome to %(server_name)s",
+ "Map: %(map_name)s by %(map_author)s",
+ "Game mode: %(game_mode)s",
+ "Server powered by piqueserver"
+]
+
+help = [
+  "Server name: %(server_name)s", 
+  "Map: %(map_name)s by %(map_author)s",
+  "Game mode: %(game_mode)s",
+  "/streak    Shows how many kills in a row you got without dying",
+  "/time      Remaining time until forced map reset"
+]
+
+rules = [
+  "No cheating. Play fair and have fun!"
+]
+
+tips = [
+  "You are playing %(game_mode)s on %(server_name)s",
+  "Type /help for info & commands",
+  "Stick with your team to dominate!"
+]
+
+tips_frequency = 5
+
+# SERVER
+master = false
+max_players = 10  # 5v5 match
+server_prefix = "[TDM] "
+max_connections_per_ip = 3
+port = 8001
+network_interface = ""
+login_retries = 3
+check_for_updates = false
+
+scripts = [
+  "piqueserver.scripts.votekick",
+  "piqueserver.scripts.map_extensions",
+  "piqueserver.scripts.afk",
+  "piqueserver.scripts.ratio",
+  "ABBS_55"
+]
+
+# MAP
+rotation = [
+  "island",
+  "pinpoint",
+  "hallway"
+]
+advance_on_win = true
+
+# GAME
+game_mode = "piqueserver.game_modes.tdm"
+default_time_limit = 600  # 10-minute rounds
+respawn_time = 5
+respawn_waves = true
+melee_damage = 80
+fall_damage = true
+friendly_fire = false
+balanced_teams = false
+speedhack_detect = false
+retrieve_external_ip = false
+
+[team1]
+name = "Blue"
+color = [0, 0, 255]
+
+[team2]
+name = "Red"
+color = [255, 0, 0]
+
+[passwords]
+admin = ["changethis!"]
+moderator = []
+guard = []
+trusted = []
+
+[bans]
+default_duration = 1440
+
+[rights]
+moderator = [
+ "advancemap", "cancel", "dban", "fog",
+ "from", "hackinfo", "hban",
+ "kick", "kickafk", "kill", "map", 
+ "mute", "resetgame", "switch", "teleport",
+ "togglekill", "togglevotekick", "trust", "undoban"
+]
+
+guard = [
+ "cancel", "fog", "from", "hackinfo", 
+ "hban", "kick", "kickafk", "kill", 
+ "mute", "switch", "teleport", "togglekill", 
+ "togglevotekick", "trust", "unmute"
+]
+
+[status_server]
+enabled = true
+port = 8002
+logging = false
+
+[afk]
+time_limit = 3600  # 1 hour in seconds
+
+[votekick]
+percentage = 35
+ban_duration = 30
+public_votes = true
+
+[bot_settings]
+AI_mode = 1
+BOT_ADD_NUM = 16
+CPU_LV = [30, 15]
+BOT_IN_BOTH = false
+

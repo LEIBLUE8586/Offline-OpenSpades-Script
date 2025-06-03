@@ -1,0 +1,54 @@
+import random
+from piqueserver.commands import command
+from piqueserver.server import protocol
+
+# Store bot names in use
+active_bots = set()
+bot_count = 0  # Track total bot count
+
+def get_next_bot_name():
+    global bot_count
+    bot_count += 1
+    return f"Bot {bot_count}"
+
+def remove_bot():
+    """Removes the last-added bot if possible."""
+    if active_bots:
+        bot_to_remove = active_bots.pop()
+        for player in protocol.players.values():
+            if player.name == bot_to_remove:
+                player.disconnect()
+                break
+
+@command()
+def add_bot(connection):
+    """Adds a bot to balance teams."""
+    if len(protocol.players) >= protocol.max_players:
+        return "Server is full!"
+    
+    bot_name = get_next_bot_name()
+    active_bots.add(bot_name)
+    connection.protocol.player_join(bot_name, team=random.choice([1, 2]))
+    return f"Added bot: {bot_name}"
+
+@command()
+def balance_teams(connection):
+    """Automatically balances teams by adding or removing bots."""
+    teams = {1: 0, 2: 0}
+    for player in protocol.players.values():
+        teams[player.team] += 1
+    
+    if abs(teams[1] - teams[2]) >= 2:  # Balance if teams differ by 2+
+        if teams[1] > teams[2]:
+            connection.protocol.player_join(get_next_bot_name(), team=2)
+        else:
+            connection.protocol.player_join(get_next_bot_name(), team=1)
+
+@command()
+def remove_all_bots(connection):
+    """Removes all bots from the server."""
+    global active_bots
+    for bot in list(active_bots):
+        remove_bot()
+    active_bots.clear()
+    return "All bots removed!"

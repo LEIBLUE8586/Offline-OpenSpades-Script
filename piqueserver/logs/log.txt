@@ -1,0 +1,2 @@
+2025-03-27T01:38:33+0900 [piqueserver.server#info] piqueserver started on Thu Mar 27 01:38:33 2025
+2025-03-27T01:38:33+0900 [piqueserver.server#critical] Invalid map in map rotation (island), exiting.
