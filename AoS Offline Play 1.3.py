@@ -1,3 +1,9 @@
+# MIT License
+# Copyright (c) 2025 LEIBLUE 8586
+"""
+Offline Openspades Script by Nofal (Alias, Leiblue8586)
+"""
+
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 import subprocess

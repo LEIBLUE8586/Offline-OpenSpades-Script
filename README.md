@@ -11,3 +11,5 @@ First install python 3.10 since it is somehow the only python it would work with
 then lastly, open the script and use it and thats it after Python's installation.
 
 Thats all. any comments will help this project :v
+
+NOTE : Please know i made this a bit rushed, its one of my first ones and i also lack knowledge, anything will help :D
